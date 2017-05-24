@@ -30,6 +30,9 @@ ZenPacks/community/WeatherUnderground/modeler/plugins/WeatherUnderground/Locatio
 ZenPacks/community/WeatherUnderground/modeler/plugins/WeatherUnderground/__init__.py
 ZenPacks/community/WeatherUnderground/modeler/plugins/WeatherUnderground/__init__.pyc
 ZenPacks/community/WeatherUnderground/objects/objects.xml
+ZenPacks/community/WeatherUnderground/objects/templates/Devices_WeatherUnderground_rrdTemplates_Location-backup-preupgrade-201705241722.xml
+ZenPacks/community/WeatherUnderground/objects/templates/Devices_WeatherUnderground_rrdTemplates_Location-backup-preupgrade-201705241936.xml
+ZenPacks/community/WeatherUnderground/objects/templates/Devices_WeatherUnderground_rrdTemplates_Location.xml
 ZenPacks/community/WeatherUnderground/parsers/__init__.py
 ZenPacks/community/WeatherUnderground/resources/__init__.py
 ZenPacks/community/WeatherUnderground/tests/__init__.py

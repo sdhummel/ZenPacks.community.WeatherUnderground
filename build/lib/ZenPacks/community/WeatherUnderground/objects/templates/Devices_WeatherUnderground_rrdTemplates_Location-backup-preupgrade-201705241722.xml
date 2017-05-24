@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<objects>
+<!-- ('', 'zport', 'dmd', 'Devices', 'WeatherUnderground', 'rrdTemplates', 'Location-backup-preupgrade-201705241722') -->
+<object id='/zport/dmd/Devices/WeatherUnderground/rrdTemplates/Location-backup-preupgrade-201705241722' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
+<property id='zendoc' type='string'>
+Location weather monitoring using the Weather Underground API.
+</property>
+<property type="text" id="description" mode="w" >
+Location weather monitoring using the Weather Underground API.
+</property>
+<property type="string" id="targetPythonClass" mode="w" >
+ZenPacks.community.WeatherUnderground.WundergroundLocation
+</property>
+<tomanycont id='datasources'>
+<object id='alerts' module='ZenPacks.zenoss.PythonCollector.datasources.PythonDataSource' class='PythonDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+Python
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="string" id="cycletime" mode="w" >
+600
+</property>
+<property type="string" id="plugin_classname" mode="w" >
+ZenPacks.community.WeatherUnderground.dsplugins.Alerts
+</property>
+</object>
+</tomanycont>
+</object>
+</objects>

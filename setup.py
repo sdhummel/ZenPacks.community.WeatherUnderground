@@ -3,8 +3,8 @@
 # or saved.  Do not modify them directly here.
 # NB: PACKAGES is deprecated
 NAME = "ZenPacks.community.WeatherUnderground"
-VERSION = "1.0.0.dev0"
-AUTHOR = "Your Name Here"
+VERSION = "0.9.0"
+AUTHOR = "Sean Hummel (sdhummel@gmail.com)"
 LICENSE = ""
 NAMESPACE_PACKAGES = ['ZenPacks', 'ZenPacks.community']
 PACKAGES = ['ZenPacks', 'ZenPacks.community', 'ZenPacks.community.WeatherUnderground']
