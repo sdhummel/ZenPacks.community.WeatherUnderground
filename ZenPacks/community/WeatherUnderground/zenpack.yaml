@@ -1,0 +1,163 @@
+name: ZenPacks.community.WeatherUnderground
+
+zProperties:
+  DEFAULTS:
+    category: Weather Underground
+
+  zWundergroundAPIKey: {}
+  zWundergroundLocations:
+    type: lines
+    default:
+      - Austin, TX
+      - San Jose, CA
+      - Annapolis, MD
+
+classes:
+  WundergroundDevice:
+    base: [zenpacklib.Device]
+    label: Weather Underground API
+
+  WundergroundLocation:
+    base: [zenpacklib.Component]
+    label: Location
+
+    properties:
+      country_code:
+        label: Country Code
+
+      timezone:
+        label: Time Zone
+
+      weather:
+        label: Weather
+
+      api_link:
+        label: API Link
+        grid_display: False
+
+class_relationships:
+  - WundergroundDevice 1:MC WundergroundLocation
+
+device_classes:
+  /WeatherUnderground:
+    zProperties:
+      zPythonClass: ZenPacks.community.WeatherUnderground.WundergroundDevice
+      zPingMonitorIgnore: true
+      zSnmpMonitorIgnore: true
+      zCollectorPlugins:
+        - WeatherUnderground.Locations
+
+    templates:
+      Location:
+        description: Location weather monitoring using the Weather Underground API.
+        targetPythonClass: ZenPacks.community.WeatherUnderground.WundergroundLocation
+
+        datasources:
+          alerts:
+            type: Python
+            plugin_classname: ZenPacks.community.WeatherUnderground.dsplugins.Alerts
+            cycletime: "600"
+
+          conditions:
+            type: Python
+            plugin_classname: ZenPacks.community.WeatherUnderground.dsplugins.Conditions
+            cycletime: "600"
+
+            datapoints:
+              temp_f: GAUGE
+              feelslike_f: GAUGE
+              heat_index_f: GAUGE
+              windchill_f: GAUGE
+              dewpoint_f: GAUGE
+              relative_humidity: GAUGE
+              pressure_mb: GAUGE
+              precip_1hr_in: GAUGE
+              UV: GAUGE
+              wind_mph: GAUGE
+              wind_gust_mph: GAUGE
+              visibility_mi: GAUGE
+
+        graphs:
+          Temperatures:
+            units: "degrees F."
+
+            graphpoints:
+              Temperature:
+                dpName: conditions_temp_f
+                format: "%7.2lf"
+
+              Feels Like:
+                dpName: conditions_feelslike_f
+                format: "%7.2lf"
+
+              Heat Index:
+                dpName: conditions_heat_index_f
+                format: "%7.2lf"
+
+              Wind Chill:
+                dpName: conditions_windchilltemp_f
+                format: "%7.2lf"
+
+              Dewpoint:
+                dpName: conditions_dewpoint_f
+                format: "%7.2lf"
+
+          Relative Humidity:
+            units: percent
+            miny: 0
+            maxy: 100
+
+            graphpoints:
+              Relative Humidity:
+                dpName: conditions_relative_humidity
+                format: "%7.2lf%%"
+
+          Pressure:
+            units: millibars
+            miny: 0
+
+            graphpoints:
+              Pressure:
+                dpName: conditions_pressure_mb
+                format: "%7.0lf"
+
+          Precipitation:
+            units: centimeters
+            miny: 0
+
+            graphpoints:
+              1 Hour:
+                dpName: conditions_precip_1hr_in
+                format: "%7.2lf"
+
+          UV Index:
+            units: UV index
+            miny: 0
+            maxy: 12
+
+            graphpoints:
+              UV Index:
+                dpName: conditions_UV
+                format: "%7.0lf"
+
+          Wind Speed:
+            units: mph
+            miny: 0
+
+            graphpoints:
+              Sustained:
+                dpName: conditions_wind_mph
+                format: "%7.2lf"
+
+              Gust:
+                dpName: conditions_wind_gust_mph
+                format: "%7.2lf"
+
+          Visibility:
+            units: miles
+            miny: 0
+
+            graphpoints:
+              Visibility:
+                dpName: conditions_visibility_mi
+                format: "%7.2lf"
